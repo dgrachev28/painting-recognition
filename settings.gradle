@@ -1,3 +1,4 @@
 rootProject.name = 'painting-recognition'
 include 'recognition'
+include 'datastorage'
 
