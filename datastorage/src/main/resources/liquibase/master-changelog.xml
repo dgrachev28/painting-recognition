@@ -6,4 +6,6 @@
 
     <include file="liquibase/2017-04-10-2205-init.xml"/>
 
+    <include file="liquibase/2017-04-15-1551-languages.xml"/>
+
 </databaseChangeLog>
