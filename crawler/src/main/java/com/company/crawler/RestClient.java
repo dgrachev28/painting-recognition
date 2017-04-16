@@ -2,10 +2,12 @@ package com.company.crawler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.fluent.Request;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Component
 public class RestClient {
 
     public String get(String url) {
