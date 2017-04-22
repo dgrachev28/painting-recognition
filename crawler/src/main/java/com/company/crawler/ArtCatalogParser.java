@@ -1,10 +1,10 @@
 package com.company.crawler;
 
-import com.company.AppProperties;
-import com.company.entity.Author;
-import com.company.entity.LocalizedString;
-import com.company.entity.Picture;
-import com.company.repository.PictureRepository;
+import com.company.core.AppProperties;
+import com.company.core.entity.Author;
+import com.company.core.entity.LocalizedString;
+import com.company.core.entity.Picture;
+import com.company.core.repository.PictureRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

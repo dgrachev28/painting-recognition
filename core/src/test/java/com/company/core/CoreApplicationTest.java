@@ -1,4 +1,4 @@
-package com.company;
+package com.company.core;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DatastorageApplicationTests {
+public class CoreApplicationTest {
 
     @Test
     public void contextLoads() {

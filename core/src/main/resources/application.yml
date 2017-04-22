@@ -13,3 +13,4 @@ liquibase:
 
 app:
   image-folder: /home/denis/Denis/images
+  tmp-folder: /home/denis/Denis/tmp

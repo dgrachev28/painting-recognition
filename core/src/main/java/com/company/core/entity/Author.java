@@ -1,4 +1,4 @@
-package com.company.entity;
+package com.company.core.entity;
 
 
 import javax.persistence.CascadeType;

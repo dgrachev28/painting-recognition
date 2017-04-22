@@ -1,6 +1,6 @@
-package com.company.repository;
+package com.company.core.repository;
 
-import com.company.entity.Picture;
+import com.company.core.entity.Picture;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PictureRepository extends JpaRepository<Picture, Long> {
