@@ -1,7 +1,6 @@
 package com.company.core.entity;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,20 +12,16 @@ import javax.persistence.ManyToOne;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "name")
-    private LocalizedString name = new LocalizedString();
+    private String name;
+    private String description;
+    private String lifeYears;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "description")
-    private LocalizedString description = new LocalizedString();
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "life_years")
-    private LocalizedString lifeYears = new LocalizedString();
+    @ManyToOne
+    @JoinColumn
+    private Language language;
 
 
     public Long getId() {
@@ -37,27 +32,35 @@ public class Author {
         this.id = id;
     }
 
-    public LocalizedString getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(LocalizedString name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public LocalizedString getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(LocalizedString description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public LocalizedString getLifeYears() {
+    public String getLifeYears() {
         return lifeYears;
     }
 
-    public void setLifeYears(LocalizedString lifeYears) {
+    public void setLifeYears(String lifeYears) {
         this.lifeYears = lifeYears;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 }

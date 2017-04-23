@@ -1,0 +1,76 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+    <changeSet id="1" author="dgrachev28">
+        <dropTable tableName="picture"/>
+        <rollback changeSetPath="liquibase/2017-04-15-1551-languages.xml" changeSetId="5" changeSetAuthor="dgrachev28"/>
+    </changeSet>
+
+    <changeSet id="2" author="dgrachev28">
+        <dropTable tableName="author"/>
+        <rollback changeSetPath="liquibase/2017-04-15-1551-languages.xml" changeSetId="4" changeSetAuthor="dgrachev28"/>
+    </changeSet>
+
+    <changeSet id="3" author="dgrachev28">
+        <dropTable tableName="localized_string"/>
+        <rollback changeSetPath="liquibase/2017-04-15-1551-languages.xml" changeSetId="3" changeSetAuthor="dgrachev28"/>
+    </changeSet>
+
+    <changeSet id="4" author="dgrachev28">
+        <createTable tableName="language">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="5" author="dgrachev28">
+        <createTable tableName="author">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="description" type="text"/>
+            <column name="life_years" type="text"/>
+            <column name="language_id" type="int">
+                <constraints foreignKeyName="fk_author_language" references="language(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="6" author="dgrachev28">
+        <createTable tableName="picture">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="description" type="text"/>
+            <column name="year" type="text"/>
+            <column name="short_info" type="text"/>
+            <column name="gallery" type="text"/>
+            <column name="image_path" type="text"/>
+            <column name="author_id" type="int">
+                <constraints foreignKeyName="fk_picture_author" references="author(id)"/>
+            </column>
+            <column name="language_id" type="int">
+                <constraints foreignKeyName="fk_picture_language" references="language(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="7" author="dgrachev28">
+        <insert tableName="language">
+            <column name="name" value="ru"/>
+        </insert>
+        <rollback>
+            <delete tableName="language"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

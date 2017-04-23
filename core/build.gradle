@@ -1,6 +1,3 @@
-group 'com.company'
-version '1.0-SNAPSHOT'
-
 buildscript {
     ext {
         springBootVersion = '1.5.2.RELEASE'
@@ -10,12 +7,21 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.postgresql:postgresql:9.4.1212.jre7'
     }
 }
+
+plugins {
+    id 'org.liquibase.gradle' version '1.2.1'
+}
+
+group 'com.company'
+version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+
 
 
 repositories {
@@ -35,3 +41,15 @@ dependencies {
 }
 
 compileJava.dependsOn(processResources)
+
+
+liquibase {
+    activities {
+        main {
+            changeLogFile 'liquibase/master-changelog.xml'
+            url datasource_url
+            username datasource_username
+            password datasource_password
+        }
+    }
+}

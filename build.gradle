@@ -25,4 +25,10 @@ configure(allprojects) {
     apply plugin: 'propdeps-maven'
     apply plugin: 'propdeps-idea'
     apply plugin: 'propdeps-eclipse'
+
+    processResources {
+        filesMatching('application.yml') {
+            expand(project.properties)
+        }
+    }
 }

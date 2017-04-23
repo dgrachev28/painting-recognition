@@ -2,7 +2,6 @@ package com.company.core.entity;
 
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,30 +14,14 @@ import javax.persistence.ManyToOne;
 public class Picture {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "title")
-    private LocalizedString title = new LocalizedString();
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "description")
-    private LocalizedString description = new LocalizedString();
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "year")
-    private LocalizedString year = new LocalizedString();
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "short_info")
-    private LocalizedString shortInfo = new LocalizedString();
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "gallery")
-    private LocalizedString gallery = new LocalizedString();
-
-    @Column(name = "image_path")
+    private String title;
+    private String description;
+    private String year;
+    private String shortInfo;
+    private String gallery;
     private String imagePath;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
@@ -53,43 +36,43 @@ public class Picture {
         this.id = id;
     }
 
-    public LocalizedString getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(LocalizedString title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public LocalizedString getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(LocalizedString description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public LocalizedString getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(LocalizedString year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public LocalizedString getShortInfo() {
+    public String getShortInfo() {
         return shortInfo;
     }
 
-    public void setShortInfo(LocalizedString shortInfo) {
+    public void setShortInfo(String shortInfo) {
         this.shortInfo = shortInfo;
     }
 
-    public LocalizedString getGallery() {
+    public String getGallery() {
         return gallery;
     }
 
-    public void setGallery(LocalizedString gallery) {
+    public void setGallery(String gallery) {
         this.gallery = gallery;
     }
 

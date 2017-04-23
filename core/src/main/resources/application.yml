@@ -1,15 +1,14 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/painting_recognition
-    username: postgres
-    password: postgres
+    url: ${datasource_url}
+    username: ${datasource_username}
+    password: ${datasource_password}
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
-#    hibernate.ddl-auto: create
 
 liquibase:
-  change-log: classpath:liquibase/master-changelog.xml
+  enabled: false
 
 app:
   image-folder: /home/denis/Denis/images
