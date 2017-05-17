@@ -1,6 +1,8 @@
 package com.company.core.entity;
 
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
 public class LocalizedString {
 
     public static final String RU = "ru";
@@ -44,29 +47,5 @@ public class LocalizedString {
             default:
                 setTextRu(value);
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTextRu() {
-        return textRu;
-    }
-
-    public void setTextRu(String textRu) {
-        this.textRu = textRu;
-    }
-
-    public String getTextEn() {
-        return textEn;
-    }
-
-    public void setTextEn(String textEn) {
-        this.textEn = textEn;
     }
 }
