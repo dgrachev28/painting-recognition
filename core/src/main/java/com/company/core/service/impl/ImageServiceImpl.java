@@ -23,7 +23,7 @@ public class ImageServiceImpl implements ImageService {
     }
 
     private void saveMultipartFileToFile(MultipartFile multipart) throws IOException {
-        File file = new File(appProperties.getTmpFolder() + "/abc.txt");
+        File file = new File(appProperties.getTmpFolder() + "/abc.jpg");
         multipart.transferTo(file);
     }
 

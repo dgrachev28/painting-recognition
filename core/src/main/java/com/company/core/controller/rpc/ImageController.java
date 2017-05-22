@@ -1,8 +1,9 @@
 package com.company.core.controller.rpc;
 
+import com.company.core.dto.PictureDto;
 import com.company.core.service.ImageService;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,12 +20,11 @@ public class ImageController {
     private ImageService imageService;
 
     @PostMapping("/recognize")
-    public void recognize(@RequestParam("image") MultipartFile image) throws IOException {
+    public PictureDto recognize(@RequestParam("image") MultipartFile image) throws IOException {
+        PictureDto pictureDto = new PictureDto();
+        pictureDto.setTitle("title");
+        pictureDto.setImageBase64(Base64.encode(image.getBytes()));
         imageService.recognize(image);
-    }
-
-    @GetMapping
-    public void test() {
-        System.out.println(1);
+        return pictureDto;
     }
 }
