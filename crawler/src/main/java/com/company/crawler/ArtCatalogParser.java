@@ -68,9 +68,9 @@ public class ArtCatalogParser {
         Picture picture = new Picture();
         picture.setAuthor(new Author());
         if (element.children().size() > 3) {
-            picture.getYear().put(LOCALE, element.child(3).text());
+            picture.setYear(element.child(3).text());
         }
-        picture.getTitle().put(LOCALE, element.child(2).text());
+        picture.setTitle(element.child(2).text());
         String picturePageUrl = element.child(1).child(0).attr("href");
         parsePicturePage(picturePageUrl, picture);
         picture = pictureRepository.save(picture);
@@ -99,9 +99,9 @@ public class ArtCatalogParser {
         String gallery = elements.select("a[href~=gallery.php]").text();
         String authorLifeYears = elements.select("a[href~=artist.php]").parents().get(0).nextElementSibling().text();
 
-        picture.getAuthor().getName().put(LOCALE, author);
-        picture.getAuthor().getLifeYears().put(LOCALE, authorLifeYears);
-        picture.getGallery().put(LOCALE, gallery);
-        picture.getShortInfo().put(LOCALE, shortInfo);
+        picture.getAuthor().setName(author);
+        picture.getAuthor().setLifeYears(authorLifeYears);
+        picture.setGallery(gallery);
+        picture.setShortInfo(shortInfo);
     }
 }
