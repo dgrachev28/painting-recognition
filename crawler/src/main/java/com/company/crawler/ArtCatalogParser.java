@@ -2,15 +2,13 @@ package com.company.crawler;
 
 import com.company.core.AppProperties;
 import com.company.core.entity.Author;
-import com.company.core.entity.LocalizedString;
 import com.company.core.entity.Picture;
 import com.company.core.repository.PictureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,17 +19,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Component
 public class ArtCatalogParser {
-
-    private static final Logger log = LoggerFactory.getLogger(ArtCatalogParser.class);
 
     private static final int PICTURES_COUNT = 10;
     //    private static final int PICTURES_COUNT = 21065;
     private static final int PICTURES_ON_PAGE_COUNT = 90;
     private static final String DOMAIN = "http://www.art-catalog.ru";
     private static final String SITE_URL = DOMAIN + "/gallery.php";
-    private static final String LOCALE = LocalizedString.RU;
 
     @Autowired
     private PictureRepository pictureRepository;
@@ -61,7 +57,6 @@ public class ArtCatalogParser {
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
-
     }
 
     private void parseOnePicture(Element element) throws IOException {

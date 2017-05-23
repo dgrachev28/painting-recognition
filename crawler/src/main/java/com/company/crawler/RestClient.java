@@ -1,12 +1,14 @@
 package com.company.crawler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.fluent.Request;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Map;
 
+@Slf4j
 @Component
 public class RestClient {
 
@@ -16,12 +18,11 @@ public class RestClient {
                     .connectTimeout(1000)
                     .socketTimeout(1000)
                     .execute().returnContent().asString();
-            System.out.println(result);
+            log.debug(result);
             Map<String, Object> map = jsonToMap(result);
             return result;
         } catch (IOException e) {
-            // TODO: добавить логгер
-            e.printStackTrace();
+            log.error(e.getMessage(), e);
         }
         return null;
     }

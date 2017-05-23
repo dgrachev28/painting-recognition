@@ -26,8 +26,12 @@ repositories {
 dependencies {
     compile 'org.apache.httpcomponents:fluent-hc:4.5.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr2'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr2'
     compile 'com.jayway.jsonpath:json-path:2.2.0'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.7.2'
+
+    compileOnly "org.projectlombok:lombok:1.16.16"
+    testCompileOnly "org.projectlombok:lombok:1.16.16"
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 

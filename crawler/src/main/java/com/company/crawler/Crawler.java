@@ -12,8 +12,7 @@ public class Crawler {
     private ArtCatalogParser parser;
 
     public void search() {
-//        rest.get("http://ru.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=&titles=Охотники_на_привале");
-//            String s = rest.get("http://www.art-catalog.ru/gallery.php");
-        parser.parseSite();
+        rest.get("http://ru.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=&titles=Охотники_на_привале");
+//        parser.parseSite();
     }
 }
