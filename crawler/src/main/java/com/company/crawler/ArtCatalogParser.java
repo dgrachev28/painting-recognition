@@ -1,6 +1,6 @@
 package com.company.crawler;
 
-import com.company.core.AppProperties;
+import com.company.component.FileService;
 import com.company.core.entity.Author;
 import com.company.core.entity.Picture;
 import com.company.core.repository.PictureRepository;
@@ -12,11 +12,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -33,7 +29,7 @@ public class ArtCatalogParser {
     private PictureRepository pictureRepository;
 
     @Autowired
-    private AppProperties appProperties;
+    private FileService fileService;
 
     public void parseSite() {
         for (int i = 0; i < PICTURES_COUNT; i += PICTURES_ON_PAGE_COUNT) {
@@ -68,20 +64,12 @@ public class ArtCatalogParser {
         picture.setTitle(element.child(2).text());
         String picturePageUrl = element.child(1).child(0).attr("href");
         parsePicturePage(picturePageUrl, picture);
-        picture = pictureRepository.save(picture);
+        picture = pictureRepository.save(picture); // we use picture id in file name later, so we need to save picture to get id
 
         String imageUrl = element.child(1).child(0).child(0).attr("src").replace("/thumb/", "/picture/");
-        String imagePath = saveImageFile(imageUrl, picture);
+        String imagePath = fileService.saveImageFile(imageUrl, picture);
         picture.setImagePath(imagePath);
         pictureRepository.save(picture);
-    }
-
-    private String saveImageFile(String imageUrl, Picture picture) throws IOException {
-        URL url = new URL(imageUrl);
-        BufferedImage image = ImageIO.read(url);
-        String imagePath = appProperties.getImageFolder() + "/" + picture.getId() + ".jpg";
-        ImageIO.write(image, "jpg", new File(imagePath));
-        return imagePath;
     }
 
 

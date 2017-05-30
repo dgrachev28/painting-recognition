@@ -6,6 +6,8 @@ import org.apache.http.client.fluent.Request;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 
 @Slf4j
@@ -14,14 +16,13 @@ public class RestClient {
 
     public String get(String url) {
         try {
-            String result = Request.Get(url)
+            String result = Request.Get(new URI(url))
                     .connectTimeout(1000)
                     .socketTimeout(1000)
                     .execute().returnContent().asString();
             log.debug(result);
-            Map<String, Object> map = jsonToMap(result);
             return result;
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             log.error(e.getMessage(), e);
         }
         return null;
