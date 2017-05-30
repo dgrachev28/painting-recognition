@@ -8,6 +8,4 @@
     <include file="liquibase/2017-04-15-1551-languages.xml"/>
     <include file="liquibase/2017-04-23-0148-recreate-lang-model.xml"/>
     <include file="liquibase/2017-05-17-2316-create-picture-descriptor-table.xml"/>
-    <include file="liquibase/2017-05-18-2338-add-picture-descriptor-id-column.xml"/>
-
 </databaseChangeLog>

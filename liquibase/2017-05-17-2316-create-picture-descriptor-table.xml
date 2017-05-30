@@ -9,6 +9,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="descriptor" type="text"/>
+            <column name="picture_id" type="int"/>
         </createTable>
     </changeSet>
 

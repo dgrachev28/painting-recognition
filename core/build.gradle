@@ -40,6 +40,8 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     optional "org.springframework.boot:spring-boot-configuration-processor"
+
+    compile project(':recognition')
 }
 
 compileJava.dependsOn(processResources)

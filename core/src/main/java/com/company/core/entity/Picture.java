@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 @Data
@@ -35,8 +34,4 @@ public class Picture {
     @ManyToOne
     @JoinColumn
     private Language language;
-
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
-    @JoinColumn
-    private PictureDescriptor pictureDescriptor;
 }

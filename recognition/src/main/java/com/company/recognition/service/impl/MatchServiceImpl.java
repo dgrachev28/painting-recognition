@@ -1,27 +1,33 @@
 package com.company.recognition.service.impl;
 
 import com.company.recognition.service.MatchService;
-import org.opencv.core.*;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.core.MatOfDMatch;
+import org.opencv.core.MatOfKeyPoint;
+import org.opencv.core.Scalar;
 import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.Features2d;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class MatchServiceImpl implements MatchService {
     private final DescriptorMatcher MATCHER = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
 
-    public List<Double> match(Mat descriptors1, Mat descriptors2) {
+    public double match(Mat descriptors1, Mat descriptors2) {
         MatOfDMatch matches = new MatOfDMatch();
         MATCHER.match(descriptors1, descriptors2, matches);
+//        return matches.toList().stream()
+//                .sorted((a, b) -> Math.round(a.distance - b.distance))
+//                .limit(10)
+//                .map(e -> (double) e.distance)
+//                .collect(Collectors.toList());
         return matches.toList().stream()
-                .sorted((a, b) -> Math.round(a.distance - b.distance))
+                .mapToDouble(e -> (double) e.distance)
+                .sorted()
                 .limit(10)
-                .map(e -> (double) e.distance)
-                .collect(Collectors.toList());
+                .sum();
     }
 
     public void drawMatches(Mat image1, MatOfKeyPoint keypoints1,

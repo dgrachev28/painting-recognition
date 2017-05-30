@@ -37,7 +37,7 @@ public class DescriptorConverter {
         return null;
     }
 
-    public static Mat matFromJson(String json) {
+    public static Mat jsonToMat(String json) {
         HashMap matProperties = new Gson().fromJson(json, HashMap.class);
         int rows = new Integer((String) matProperties.get(ROWS_PROPERTY));
         int cols = new Integer((String) matProperties.get(COLS_PROPERTY));

@@ -22,7 +22,7 @@ public class DescriptorConverterTest {
         String imagePath = "/converter/picture.jpg";
         Mat mat = descriptorService.generateDescriptors(descriptorService.getAbsolutePath(imagePath));
         String json = DescriptorConverter.matToJson(mat);
-        Mat newMat = DescriptorConverter.matFromJson(json);
+        Mat newMat = DescriptorConverter.jsonToMat(json);
 
         Assert.assertEquals(mat.cols(), newMat.cols());
         Assert.assertEquals(mat.rows(), newMat.rows());
