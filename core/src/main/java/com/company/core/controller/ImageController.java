@@ -1,4 +1,4 @@
-package com.company.core.controller.rpc;
+package com.company.core.controller;
 
 import com.company.core.converter.PictureConverter;
 import com.company.core.dto.PictureDto;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
 
 @RestController
 @RequestMapping("/image")
