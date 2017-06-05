@@ -1,9 +1,9 @@
 package com.company.crawler;
 
-import com.company.component.FileService;
 import com.company.core.entity.Author;
 import com.company.core.entity.Picture;
 import com.company.core.repository.PictureRepository;
+import com.company.core.service.FileService;
 import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;

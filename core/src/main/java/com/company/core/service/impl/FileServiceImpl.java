@@ -1,8 +1,9 @@
-package com.company.component;
+package com.company.core.service.impl;
 
 
 import com.company.core.AppProperties;
 import com.company.core.entity.Picture;
+import com.company.core.service.FileService;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -25,7 +26,7 @@ public class FileServiceImpl implements FileService {
         URL url = new URL(imageUrl);
         BufferedImage image = ImageIO.read(url);
         String imagePath = "/" + picture.getId() + ".jpg";
-        ImageIO.write(image, "jpg", new File(imagePath));
+        ImageIO.write(image, "jpg", new File(getAbsoluteImagePath(imagePath)));
         return imagePath;
     }
 

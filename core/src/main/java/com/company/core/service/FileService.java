@@ -1,4 +1,4 @@
-package com.company.component;
+package com.company.core.service;
 
 import com.company.core.entity.Picture;
 import org.springframework.stereotype.Service;

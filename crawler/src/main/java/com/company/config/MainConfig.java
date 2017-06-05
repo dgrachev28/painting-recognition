@@ -1,11 +1,12 @@
 package com.company.config;
 
-import com.company.component.FileService;
-import com.company.crawler.Crawler;
+import com.company.core.repository.PictureRepository;
+import com.company.core.service.FileService;
+import com.company.crawler.ArtCatalogParser;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackageClasses = {Crawler.class, FileService.class})
+@ComponentScan(basePackageClasses = {PictureRepository.class, ArtCatalogParser.class, FileService.class})
 public class MainConfig {
 }

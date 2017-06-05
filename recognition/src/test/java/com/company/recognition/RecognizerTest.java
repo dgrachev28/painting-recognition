@@ -89,6 +89,11 @@ public class RecognizerTest {
             this.distancesSum = distances.stream().mapToDouble(d -> d).sum();
         }
 
+        public MatchResult(String fileName, Double distancesSum) {
+            this.fileName = fileName;
+            this.distancesSum = distancesSum;
+        }
+
         @Override
         public int compareTo(Object o) {
             return (int) Math.round(this.distancesSum - ((MatchResult) o).distancesSum);
