@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @WebAppConfiguration
 @SpringBootTest(classes = CoreApplication.class)
-public class ImageControllerTest {
+public class PictureControllerTest {
 
     @Autowired
     private MockMvc mvc;

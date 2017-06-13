@@ -4,7 +4,7 @@ import com.company.core.AppProperties;
 import com.company.core.entity.Picture;
 import com.company.core.entity.PictureDescriptor;
 import com.company.core.repository.PictureDescriptorRepository;
-import com.company.core.service.ImageService;
+import com.company.core.service.ImageRecognitionService;
 import com.company.recognition.converter.DescriptorConverter;
 import com.company.recognition.service.DescriptorService;
 import com.company.recognition.service.MatchService;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
-public class ImageServiceImpl implements ImageService {
+public class ImageRecognitionServiceImpl implements ImageRecognitionService {
 
     private AtomicLong pictureNumber = new AtomicLong(0L);
     private AppProperties appProperties;
@@ -26,7 +26,7 @@ public class ImageServiceImpl implements ImageService {
     private MatchService matchService;
     private PictureDescriptorRepository pictureDescriptorRepository;
 
-    public ImageServiceImpl(AppProperties appProperties, DescriptorService descriptorService, MatchService matchService, PictureDescriptorRepository pictureDescriptorRepository) {
+    public ImageRecognitionServiceImpl(AppProperties appProperties, DescriptorService descriptorService, MatchService matchService, PictureDescriptorRepository pictureDescriptorRepository) {
         this.appProperties = appProperties;
         this.descriptorService = descriptorService;
         this.matchService = matchService;

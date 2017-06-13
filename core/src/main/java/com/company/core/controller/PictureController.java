@@ -1,9 +1,7 @@
 package com.company.core.controller;
 
-import com.company.core.converter.PictureConverter;
 import com.company.core.dto.PictureDto;
-import com.company.core.entity.Picture;
-import com.company.core.service.ImageService;
+import com.company.core.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,14 +13,13 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/image")
-public class ImageController {
+public class PictureController {
 
     @Autowired
-    private ImageService imageService;
-
+    private PictureService pictureService;
+    
     @PostMapping("/recognize")
     public PictureDto recognize(@RequestParam("image") MultipartFile image) throws IOException {
-        Picture picture = imageService.recognize(image);
-        return PictureConverter.toDto(picture);
+        return pictureService.recognize(image);
     }
 }

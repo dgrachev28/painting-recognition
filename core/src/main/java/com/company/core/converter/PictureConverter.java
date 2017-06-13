@@ -2,14 +2,11 @@ package com.company.core.converter;
 
 import com.company.core.dto.PictureDto;
 import com.company.core.entity.Picture;
-import org.apache.commons.io.FileUtils;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Base64;
 
 public class PictureConverter {
-    public static PictureDto toDto(Picture picture) throws IOException {
+    public static PictureDto toDto(Picture picture, String imageBase64) throws IOException {
         if (picture == null) {
             return null;
         }
@@ -19,9 +16,7 @@ public class PictureConverter {
         pictureDto.setShortInfo(picture.getShortInfo());
         pictureDto.setTitle(picture.getTitle());
         pictureDto.setYear(picture.getYear());
-        pictureDto.setImageBase64(
-                new String(Base64.getEncoder().encode(
-                FileUtils.readFileToByteArray(new File(picture.getImagePath())))));
+        pictureDto.setImageBase64(imageBase64);
         return pictureDto;
     }
 }
