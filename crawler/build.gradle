@@ -22,7 +22,6 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     compile 'org.apache.httpcomponents:fluent-hc:4.5.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr2'
@@ -36,4 +35,8 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     compile project(':core')
+}
+
+bootRepackage {
+    enabled = false
 }

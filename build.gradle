@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath 'io.spring.gradle:propdeps-plugin:0.0.8'
+    }
+}
+
+plugins {
+    id 'net.saliman.properties' version '1.4.6'
+}
+
 group 'com.company'
 version '1.0-SNAPSHOT'
 
@@ -11,20 +24,12 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-buildscript {
-    repositories {
-        maven { url 'http://repo.spring.io/plugins-release' }
-    }
-    dependencies {
-        classpath 'io.spring.gradle:propdeps-plugin:0.0.8'
-    }
-}
-
 configure(allprojects) {
     apply plugin: 'propdeps'
     apply plugin: 'propdeps-maven'
     apply plugin: 'propdeps-idea'
     apply plugin: 'propdeps-eclipse'
+    apply plugin: 'net.saliman.properties'
 
     processResources {
         filesMatching('application.yml') {

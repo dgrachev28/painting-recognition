@@ -23,7 +23,6 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 
-
 repositories {
     mavenCentral()
 }
@@ -56,4 +55,8 @@ liquibase {
             password datasource_password
         }
     }
+}
+
+bootRepackage {
+    enabled = false
 }
