@@ -2,7 +2,6 @@ package com.company.core.service.impl;
 
 
 import com.company.core.AppProperties;
-import com.company.core.entity.Picture;
 import com.company.core.service.FileService;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +21,10 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String saveImageFile(String imageUrl, Picture picture) throws IOException {
+    public String saveImageFile(String imageUrl, long pictureId) throws IOException {
         URL url = new URL(imageUrl);
         BufferedImage image = ImageIO.read(url);
-        String imagePath = "/" + picture.getId() + ".jpg";
+        String imagePath = "/" + pictureId + ".jpg";
         ImageIO.write(image, "jpg", new File(getAbsoluteImagePath(imagePath)));
         return imagePath;
     }

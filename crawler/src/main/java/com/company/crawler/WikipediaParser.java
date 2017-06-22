@@ -28,6 +28,7 @@ public class WikipediaParser {
     public static final String SITE_URL = DOMAIN + "/w/index.php?title=Категория:Картины_по_алфавиту";
     private static final String API_URL = "http://ru.wikipedia.org/w/api.php";
     private static final String API_BASE_PARAMS_URL = API_URL + "?format=json&action=query";
+    private static final String API_DESCRIPTION_EXTRACT_URL = API_BASE_PARAMS_URL + "&prop=extracts&explaintext=&titles=";
 
     private final RestClient rest;
     private final WikipediaPageParser wikipediaPageParser;
@@ -76,10 +77,14 @@ public class WikipediaParser {
         Picture picture = new Picture();
         picture.setAuthor(new Author());
         wikipediaPageParser.parseOnePage(title, picture);
-        fileService.saveImageFile(findPictureImageUrl(pictureImageName), picture);
+        picture.setDescription(findPictureDescription(title));
+        picture = pictureRepository.save(picture); // we use picture id in file name later, so we need to save picture to get id
+        String imagePath = fileService.saveImageFile(findPictureImageUrl(pictureImageName), picture.getId());
+        picture.setImagePath(imagePath);
         pictureRepository.save(picture);
     }
 
+    // TODO: refactor 3 repeated methods
     private String findPictureImageName(String title) throws UnsupportedEncodingException {
         String json = rest.get(API_BASE_PARAMS_URL + "&prop=pageimages&titles=" + URLEncoder.encode(title, "UTF-8"));
         List<String> strings = JsonPath.read(json, "$..pageimage");
@@ -87,9 +92,16 @@ public class WikipediaParser {
         return strings.get(0);
     }
 
-    private String findPictureImageUrl(String pictureName) throws UnsupportedEncodingException {
-        String json = rest.get(API_BASE_PARAMS_URL + "&titles=Image:" + URLEncoder.encode(pictureName, "UTF-8") + "&prop=imageinfo&iiprop=url");
+    private String findPictureImageUrl(String pictureImageName) throws UnsupportedEncodingException {
+        String json = rest.get(API_BASE_PARAMS_URL + "&titles=Image:" + URLEncoder.encode(pictureImageName, "UTF-8") + "&prop=imageinfo&iiprop=url");
         List<String> strings = JsonPath.read(json, "$..url");
+        Assert.isTrue(strings.size() == 1, "findPictureImageUrl: Size must be equal 1");
+        return strings.get(0);
+    }
+
+    private String findPictureDescription(String title) throws UnsupportedEncodingException {
+        String json = rest.get(API_DESCRIPTION_EXTRACT_URL + URLEncoder.encode(title, "UTF-8"));
+        List<String> strings = JsonPath.read(json, "$..extract");
         Assert.isTrue(strings.size() == 1, "findPictureImageUrl: Size must be equal 1");
         return strings.get(0);
     }

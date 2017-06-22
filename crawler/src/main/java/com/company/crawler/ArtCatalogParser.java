@@ -67,7 +67,7 @@ public class ArtCatalogParser {
         picture = pictureRepository.save(picture); // we use picture id in file name later, so we need to save picture to get id
 
         String imageUrl = element.child(1).child(0).child(0).attr("src").replace("/thumb/", "/picture/");
-        String imagePath = fileService.saveImageFile(imageUrl, picture);
+        String imagePath = fileService.saveImageFile(imageUrl, picture.getId());
         picture.setImagePath(imagePath);
         pictureRepository.save(picture);
     }
