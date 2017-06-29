@@ -14,7 +14,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 
@@ -24,19 +23,24 @@ repositories {
 
 dependencies {
     compile 'org.apache.httpcomponents:fluent-hc:4.5.3'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.9.0.pr2'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr2'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr2'
     compile 'com.jayway.jsonpath:json-path:2.2.0'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.7.2'
 
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
     compileOnly "org.projectlombok:lombok:1.16.16"
     testCompileOnly "org.projectlombok:lombok:1.16.16"
 
+    compile 'io.springfox:springfox-swagger2:2.6.1'
+    compile 'io.springfox:springfox-swagger-ui:2.6.1'
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile 'com.h2database:h2'
 
     compile project(':core')
-}
 
-bootRepackage {
-    enabled = false
+//    compile 'org.springframework.boot:spring-boot-devtools'
 }

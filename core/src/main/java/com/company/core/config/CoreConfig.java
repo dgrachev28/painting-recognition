@@ -1,9 +1,10 @@
-package com.company.config;
+package com.company.core.config;
+
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = {"com.company.crawler", "com.company.component"})
-public class MainConfig {
+@ComponentScan({"com.company.recognition", "com.company.core"})
+public class CoreConfig {
 }

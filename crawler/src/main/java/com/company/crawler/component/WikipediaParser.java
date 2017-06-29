@@ -1,4 +1,4 @@
-package com.company.crawler;
+package com.company.crawler.component;
 
 import com.company.core.entity.Author;
 import com.company.core.entity.Picture;
@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Slf4j
 @Component
-public class WikipediaParser {
+public class WikipediaParser implements Parser {
 
     private static final String DOMAIN = "https://ru.wikipedia.org";
     public static final String SITE_URL = DOMAIN + "/w/index.php?title=Категория:Картины_по_алфавиту";
@@ -41,6 +41,11 @@ public class WikipediaParser {
         this.wikipediaPageParser = wikipediaPageParser;
         this.pictureRepository = pictureRepository;
         this.fileService = fileService;
+    }
+
+    @Override
+    public void parse() {
+        parsePictures(WikipediaParser.SITE_URL);
     }
 
     public void parsePictures(String url) {

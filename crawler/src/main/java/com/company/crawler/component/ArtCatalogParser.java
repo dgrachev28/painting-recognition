@@ -1,4 +1,4 @@
-package com.company.crawler;
+package com.company.crawler.component;
 
 import com.company.core.entity.Author;
 import com.company.core.entity.Picture;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Component
-public class ArtCatalogParser {
+public class ArtCatalogParser implements Parser {
 
     private static final int PICTURES_COUNT = 10;
     //    private static final int PICTURES_COUNT = 21065;
@@ -31,7 +31,8 @@ public class ArtCatalogParser {
     @Autowired
     private FileService fileService;
 
-    public void parseSite() {
+    @Override
+    public void parse() {
         for (int i = 0; i < PICTURES_COUNT; i += PICTURES_ON_PAGE_COUNT) {
             parseOnePage(i);
         }

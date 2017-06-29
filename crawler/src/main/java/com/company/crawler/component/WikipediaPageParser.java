@@ -1,4 +1,4 @@
-package com.company.crawler;
+package com.company.crawler.component;
 
 import com.company.core.entity.Picture;
 import lombok.extern.slf4j.Slf4j;
