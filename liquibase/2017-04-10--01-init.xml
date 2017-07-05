@@ -1,0 +1,64 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="dgrachev28">
+        <createTable tableName="author">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text"/>
+            <column name="description" type="text"/>
+            <column name="life_years" type="text"/>
+
+            <column name="reference" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parser_type" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+            </column>
+            <column name="modified_date" type="datetime">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="dgrachev28">
+        <createTable tableName="picture">
+            <column name="id" autoIncrement="true" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text"/>
+            <column name="year" type="text"/>
+            <column name="short_info" type="text"/>
+            <column name="gallery" type="text"/>
+            <column name="image_path" type="text"/>
+            <column name="author_id" type="int">
+                <constraints foreignKeyName="fk_picture_author" references="author(id)"/>
+            </column>
+
+            <column name="reference" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parser_type" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="datetime">
+            </column>
+            <column name="modified_date" type="datetime">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
