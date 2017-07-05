@@ -1,6 +1,7 @@
 package com.company.crawler.model;
 
 
+import com.company.core.entity.ParserType;
 import lombok.Data;
 
 @Data

@@ -2,23 +2,22 @@ package com.company.core.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
 public class PictureDescriptor {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "picture_descriptor_seq")
+    @SequenceGenerator(name = "picture_descriptor_seq", sequenceName = "picture_descriptor_seq")
     private Long id;
 
+    @NotNull
     private String descriptor;
 
+    @NotNull
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Picture picture;

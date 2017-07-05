@@ -2,24 +2,25 @@ package com.company.core.entity;
 
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
+@EntityListeners(AuditingEntityListener.class)
 public class Picture {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "picture_id_seq")
+    @SequenceGenerator(name = "picture_id_seq", sequenceName = "picture_id_seq")
     private Long id;
 
+    @NotNull
     private String title;
     private String description;
     private String year;
@@ -27,11 +28,25 @@ public class Picture {
     private String gallery;
     private String imagePath;
 
+    @NotNull
+    private String reference;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ParserType parserType;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Language language = Language.RU;
+
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn
     private Author author;
 
-    @ManyToOne
-    @JoinColumn
-    private Language language;
+    @CreatedDate
+    private LocalDateTime createdDate;
+
+    @LastModifiedDate
+    private LocalDateTime modifiedDate;
+
 }

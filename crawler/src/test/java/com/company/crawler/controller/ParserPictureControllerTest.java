@@ -2,7 +2,7 @@ package com.company.crawler.controller;
 
 import com.company.crawler.CrawlerApplication;
 import com.company.crawler.model.ParserDto;
-import com.company.crawler.model.ParserType;
+import com.company.core.entity.ParserType;
 import com.google.gson.Gson;
 import org.junit.Ignore;
 import org.junit.Test;

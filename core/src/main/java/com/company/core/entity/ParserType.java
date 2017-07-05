@@ -1,4 +1,4 @@
-package com.company.crawler.model;
+package com.company.core.entity;
 
 public enum ParserType {
 
