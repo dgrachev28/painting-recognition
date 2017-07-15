@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -27,7 +27,7 @@ public class PictureControllerTest {
     public void testFileUpload() throws Exception {
         MockMultipartFile multipartFile =
                 new MockMultipartFile("image", "test.txt", "text/plain", "Spring Framework".getBytes());
-        mvc.perform(fileUpload("/image/recognize").file(multipartFile))
+        mvc.perform(multipart("/image/recognize").file(multipartFile))
                 .andExpect(status().isOk());
     }
 

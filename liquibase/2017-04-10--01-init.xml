@@ -5,7 +5,7 @@
 
     <changeSet id="1" author="dgrachev28">
         <createTable tableName="author">
-            <column name="id" autoIncrement="true" type="int">
+            <column name="id" autoIncrement="true" incrementBy="50" type="int">
                 <constraints primaryKey="true"/>
             </column>
             <column name="name" type="text"/>
@@ -30,7 +30,7 @@
 
     <changeSet id="2" author="dgrachev28">
         <createTable tableName="picture">
-            <column name="id" autoIncrement="true" type="int">
+            <column name="id" autoIncrement="true" incrementBy="50" type="int">
                 <constraints primaryKey="true"/>
             </column>
             <column name="title" type="text">

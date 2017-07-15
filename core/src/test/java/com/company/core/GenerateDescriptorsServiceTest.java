@@ -21,7 +21,7 @@ public class GenerateDescriptorsServiceTest {
 
     @Test
     public void generateForOne() {
-        Picture picture = pictureRepository.findOne(65L);
+        Picture picture = pictureRepository.getOne(65L);
         generateDescriptorsService.generateOne(picture);
     }
 

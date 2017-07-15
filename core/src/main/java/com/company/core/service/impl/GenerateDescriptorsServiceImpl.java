@@ -8,11 +8,13 @@ import com.company.core.service.FileService;
 import com.company.core.service.GenerateDescriptorsService;
 import com.company.recognition.converter.DescriptorConverter;
 import com.company.recognition.service.DescriptorService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class GenerateDescriptorsServiceImpl implements GenerateDescriptorsService {
 
     private final DescriptorService descriptorService;
@@ -20,15 +22,6 @@ public class GenerateDescriptorsServiceImpl implements GenerateDescriptorsServic
     private final PictureDescriptorRepository pictureDescriptorRepository;
     private final FileService fileService;
 
-    public GenerateDescriptorsServiceImpl(DescriptorService descriptorService,
-                                          PictureRepository pictureRepository,
-                                          PictureDescriptorRepository pictureDescriptorRepository,
-                                          FileService fileService) {
-        this.descriptorService = descriptorService;
-        this.pictureRepository = pictureRepository;
-        this.pictureDescriptorRepository = pictureDescriptorRepository;
-        this.fileService = fileService;
-    }
 
     @Override
     public void generateOne(Picture picture) {
