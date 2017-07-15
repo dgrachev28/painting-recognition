@@ -8,6 +8,8 @@ import com.company.core.service.ImageRecognitionService;
 import com.company.recognition.converter.DescriptorConverter;
 import com.company.recognition.service.DescriptorService;
 import com.company.recognition.service.MatchService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.opencv.core.Mat;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,20 +20,15 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
+@RequiredArgsConstructor
 public class ImageRecognitionServiceImpl implements ImageRecognitionService {
 
-    private AtomicLong pictureNumber = new AtomicLong(0L);
-    private AppProperties appProperties;
-    private DescriptorService descriptorService;
-    private MatchService matchService;
-    private PictureDescriptorRepository pictureDescriptorRepository;
+    private final AtomicLong pictureNumber = new AtomicLong(0L);
+    private final AppProperties appProperties;
+    private final DescriptorService descriptorService;
+    private final MatchService matchService;
+    private final PictureDescriptorRepository pictureDescriptorRepository;
 
-    public ImageRecognitionServiceImpl(AppProperties appProperties, DescriptorService descriptorService, MatchService matchService, PictureDescriptorRepository pictureDescriptorRepository) {
-        this.appProperties = appProperties;
-        this.descriptorService = descriptorService;
-        this.matchService = matchService;
-        this.pictureDescriptorRepository = pictureDescriptorRepository;
-    }
 
     @Override
     public Picture recognize(MultipartFile image) throws IOException {

@@ -6,6 +6,7 @@ import com.company.core.entity.Picture;
 import com.company.core.service.FileService;
 import com.company.core.service.ImageRecognitionService;
 import com.company.core.service.PictureService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,11 @@ import java.util.Base64;
 
 @Slf4j
 @Service
+@AllArgsConstructor
 public class PictureServiceImpl implements PictureService {
 
-    @Autowired
-    private ImageRecognitionService imageRecognitionService;
-
-    @Autowired
-    private FileService fileService;
+    private final ImageRecognitionService imageRecognitionService;
+    private final FileService fileService;
 
     @Override
     public PictureDto recognize(MultipartFile image) {

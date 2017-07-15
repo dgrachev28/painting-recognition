@@ -5,7 +5,7 @@
 
     <changeSet id="1" author="maria-smolina">
         <createTable tableName="picture_descriptor">
-            <column name="id" autoIncrement="true" type="int">
+            <column name="id" autoIncrement="true" incrementBy="50" type="int">
                 <constraints primaryKey="true"/>
             </column>
             <column name="descriptor" type="text">

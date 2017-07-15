@@ -1,4 +1,4 @@
-package com.company.crawler.config;
+package com.company.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
