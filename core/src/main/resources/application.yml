@@ -8,6 +8,9 @@ spring:
     show-sql: true
   profiles:
     active: local
+  servlet:
+    multipart:
+      max-file-size: 10MB
 
 liquibase:
   enabled: false
@@ -15,3 +18,4 @@ liquibase:
 app:
   image-folder: /home/denis/Denis/images
   tmp-folder: /home/denis/Denis/tmp
+  image-extension: jpg

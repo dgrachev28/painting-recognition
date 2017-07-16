@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull;
 public class PictureDescriptor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "picture_descriptor_seq")
-    @SequenceGenerator(name = "picture_descriptor_seq", sequenceName = "picture_descriptor_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "picture_descriptor_id_seq")
+    @SequenceGenerator(name = "picture_descriptor_id_seq", sequenceName = "picture_descriptor_id_seq")
     private Long id;
 
     @NotNull

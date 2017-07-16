@@ -8,7 +8,6 @@ import com.company.core.service.ImageRecognitionService;
 import com.company.recognition.converter.DescriptorConverter;
 import com.company.recognition.service.DescriptorService;
 import com.company.recognition.service.MatchService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.opencv.core.Mat;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class ImageRecognitionServiceImpl implements ImageRecognitionService {
 
     private final AtomicLong pictureNumber = new AtomicLong(0L);
+
     private final AppProperties appProperties;
     private final DescriptorService descriptorService;
     private final MatchService matchService;
@@ -56,7 +56,7 @@ public class ImageRecognitionServiceImpl implements ImageRecognitionService {
     }
 
     private String generatePictureFileName() {
-        return "/picture" + pictureNumber.incrementAndGet() + ".jpg";
+        return "/picture" + pictureNumber.incrementAndGet() + "." + appProperties.getImageExtension();
     }
 
 }
